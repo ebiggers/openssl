@@ -244,7 +244,7 @@ crypto/loongarchcap.c
 crypto/mem_clr.c
 crypto/modes/asm/aes-gcm-armv8-unroll8_64.pl
 crypto/modes/asm/aes-gcm-armv8_64.pl
-crypto/modes/asm/aes-gcm-avx512.pl
+crypto/modes/asm/aes-gcm-avx10-x86_64.pl
 crypto/modes/asm/aes-gcm-ppc.pl
 crypto/modes/asm/aes-gcm-riscv64-zvkb-zvkg-zvkned.pl
 crypto/modes/asm/aesni-gcm-x86_64.pl
@@ -583,7 +583,7 @@ providers/implementations/ciphers/cipher_aes_gcm.c
 providers/implementations/ciphers/cipher_aes_gcm.h
 providers/implementations/ciphers/cipher_aes_gcm_hw.c
 providers/implementations/ciphers/cipher_aes_gcm_hw_aesni.inc
-providers/implementations/ciphers/cipher_aes_gcm_hw_vaes_avx512.inc
+providers/implementations/ciphers/cipher_aes_gcm_hw_vaes_avx10.inc
 providers/implementations/ciphers/cipher_aes_hw.c
 providers/implementations/ciphers/cipher_aes_hw_aesni.inc
 providers/implementations/ciphers/cipher_aes_ocb.c

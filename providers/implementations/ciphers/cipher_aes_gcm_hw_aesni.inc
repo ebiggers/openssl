@@ -31,14 +31,18 @@ static const PROV_GCM_HW aesni_gcm = {
     ossl_gcm_one_shot
 };
 
-#include "cipher_aes_gcm_hw_vaes_avx512.inc"
+#include "cipher_aes_gcm_hw_vaes_avx10.inc"
 
 const PROV_GCM_HW *ossl_prov_aes_hw_gcm(size_t keybits)
 {
 #ifdef VAES_GCM_ENABLED
-    if (ossl_vaes_vpclmulqdq_capable())
+    if ((OPENSSL_ia32cap_P[3] & (1u << 9)) /* VAES */
+        && (OPENSSL_ia32cap_P[3] & (1u << 10)) /* VPCLMULQDQ */
+        && (OPENSSL_ia32cap_P[2] & (1u << 30)) /* AVX512BW */
+        && (OPENSSL_ia32cap_P[2] & (1u << 31)) /* AVX512VL */
+        && (OPENSSL_ia32cap_P[2] & (1u << 8)) /* BMI2 */
+        && aes_gcm_vaes_avx10_funcs_built())
         return &vaes_gcm;
-    else
 #endif
     if (AESNI_CAPABLE)
         return &aesni_gcm;
